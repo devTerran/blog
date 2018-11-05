@@ -3,62 +3,49 @@
 
 @section('content')
     <section class="posts container">
-        <article class="post no-image">
-            <div class="content-post">
-                <header class="container-flex space-between">
-                    <div class="date">
-                        <span class="c-gray-1">sep 20</span>
-                    </div>
-                    <div class="post-category">
-                        <span class="category text-capitalize">i do travel</span>
-                    </div>
-                    
-                </header>
-                <h1>No difference how many peaks you reach if there was no pleasure in the climb. 123</h1>
-                <div class="divider"></div>
-                <p>Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue. Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas. Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.</p>
-                <footer class="container-flex space-between">
-                    <div class="read-more">
-                        <a href="#" class="text-uppercase c-green">read more</a>
-                    </div>
-                    <div class="tags container-flex">
-                        <span class="tag c-gray-1 text-capitalize">#yosemite</span>
-                        <span class="tag c-gray-1 text-capitalize">#peak</span>
-                        <span class="tag c-gray-1 text-capitalize">#explorer</span>
-                    </div>
-                </footer>
-            </div>
-        </article>
-
+        
+        @foreach ($posts as $post)
+        
         <article class="post w-image">
             <figure><img src="img/img-post-1.png" alt="" class="img-responsive"></figure>
             <div class="content-post">
                 <header class="container-flex space-between">
                     <div class="date">
-                        <span class="c-gray-1">sep 18</span>
+                        <!-- at->diffForHumans() -->
+                        <span class="c-gray-1">{{ $post->published_at->format('d M Y') }}</span>
                     </div>
                     <div class="post-category">
-                        <span class="category text-capitalize">i do observe</span>
+                        <span class="category text-capitalize">{{ $post->category->name  }}</span>
                     </div>
                 </header>
-                <h1>You know, I'd rather argue with you, then laugh with anyone else. </h1>
+                <h1> {{ $post->title }} </h1>
                 <div class="divider"></div>
-                <cite class="cite">Curabitur luctus placerat lorem id eleifend. Nulla ac lacus finibus, tempor velit hendrerit, vulputate lacus. Nunc fermentum nunc sem, ac eleifend tellus cursus nec. Donec a euismod est, vitae accumsan purus. Proin aliquet ex massa, ac finibus magna commodo vitae. </cite>
-                <p>Quisque congue lacus mattis massa luctus, nec hendrerit purus aliquet. Ut ac elementum urna. Pellentesque suscipit metus et egestas congue. Duis eu pellentesque turpis, ut maximus metus. Sed ultrices tellus vitae rutrum congue. Fusce luctus augue id nisl suscipit, vel sollicitudin orci egestas. Morbi posuere venenatis ipsum, ac vestibulum quam dignissim efficitur. Ut vitae rutrum augue, in volutpat quam. Cras a viverra ipsum. Aenean ut consequat ex, vitae vulputate nunc. Vestibulum metus nisi, aliquam sed tincidunt sit amet, pretium et augue.</p>
-                <p>Sed sagittis commodo dolor. Vivamus elementum sem sed sapien bibendum viverra. Curabitur semper scelerisque turpis eu ullamcorper. Morbi tincidunt auctor orci id consequat. Nulla odio mi, iaculis id congue quis, euismod id nisi. In varius congue diam, et viverra lorem bibendum ut.</p>
+                <cite class="cite">
+                    {{ $post->excerpt }}
+                </cite>
+                <p>
+                    {{ $post->body }}
+                </p>
                 <footer class="container-flex space-between">
                     <div class="read-more">
                         <a href="#" class="text-uppercase c-green">read more</a>
                     </div>
                     <div class="tags container-flex">
-                        <span class="tag c-gray-1 text-capitalize">#yosemite</span>
-                        <span class="tag c-gray-1 text-capitalize">#peak</span>
-                        <span class="tag c-gray-1 text-capitalize">#photo</span>
+                        
+                        @foreach ($post->tag as $tag)
+                        <span class="tag c-gray-1 text-capitalize"># {{   $tag->name }}</span>
+                        @endforeach
+                      
                     </div>
                 </footer>
             </div>
         </article>
 
+        @endforeach
+
+        
+
+        <!--
         <article class="post w-gallery">
             <div class="gallery-photos masonry">
                 <figure class="gallery-image"><img src="img/img-post-gallery-1.png" alt=""></figure>
@@ -227,7 +214,7 @@
                     </div>
                 </footer>
             </div>
-        </article>
+        </article>-->
 
     </section>
     <!-- fin del div.posts.container -->

@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = App\Post::latest('published_at')->get();
+    //$posts = App\Post::all();
+
+
+    return view('welcome',compact('posts'));
 });
 
 
